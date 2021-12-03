@@ -1,0 +1,1338 @@
+"'Edit oferta' As screen":
+    BackgroundImage: =bck5
+    Fill: =RGBA(215, 223, 240, 1)
+
+    "Gallery2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =756
+        Items: =Gallery1.Selected
+        Layout: =Layout.Vertical
+        ShowNavigation: =true
+        ShowScrollbar: =false
+        TemplatePadding: =0
+        TemplateSize: =756
+        Width: =1350
+        X: =8
+        ZIndex: =1
+
+        Image3 As image:
+            Height: =83
+            Image: =Gallery1.Selected.Image1
+            OnSelect: =Select(Parent)
+            Width: =84
+            X: =99
+            Y: =5
+            ZIndex: =1
+
+        Separator2 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
+        Button1 As button:
+            Height: =51
+            OnSelect: |-
+                =Patch('KAEFER-CRM_SP',
+                First( Filter( 'KAEFER-CRM_SP', 'Offer Number' = ThisItem.'Offer Number' ) ),
+                {
+                'Offer Number':TextInput3.Text,
+                Status:Dropdown1_5.SelectedText.Value,
+                Debitor:ComboBox1_3.Selected.CardName,
+                'Tipo de Cliente':Dropdown1_2.SelectedText.Value,
+                'Tipo de Contrato':Dropdown1_1.SelectedText.Value,
+                'Tipo de Industria (donde se realizarían)':Dropdown1_3.SelectedText.Value,
+                'Offer text':TextInput3_7.Text,
+                Location:TextInput3_8.Text,
+                Object:Dropdown1_6.SelectedText.Value,
+                'Offer Type':Dropdown1_4.SelectedText.Value,
+                Value:TextInput3_15.Text,
+                'DB1B%':TextInput3_17.Text,
+                'Profit center':Dropdown1_7.SelectedText.Value,
+                Calculator:If(Len(Label10.Text)=0,"",Label10.Text),
+                Owner:ComboBox4_1.Selected.Value,
+                'Tipo de precio':Dropdown1_8.SelectedText.Value,
+                Start:TextInput3_3.Text,
+                End:TextInput3_6.Text,
+                'Visit date':TextInput3_4.Text,
+                'Creation date':TextInput3_5.Text,
+                'EW%':TextInput3_18.Text,
+                Comments:TextInput3_30.Text,
+                'Cliente FInal':ComboBox1_4.Selected.CardName,
+                AnoSiguiente:TextInput9.Text,
+                valid:TextInput3_10.Text
+                });
+                
+                If(Dropdown1_5.SelectedText.Value="Adjudicada",Office365Outlook.SendEmailV2(Label18_1.Text,"Nueva oferta adjudicada",
+                "Fecha de actualización: " &  "<b>" & Now()& "<br>" &  "</b>" & 
+                " Nº de la oferta : "&  "<b>" & TextInput3.Text& "<br>" & "<br>"&  "</b>" & 
+                "Estado de la oferta: "&  "<b>" & Dropdown1_5.SelectedText.Value & "<br>"&  "</b>" & 
+                "Cliente: "&  "<b>" & Label17.Text & "<br>"&  "</b>" & 
+                "Tipo de Cliente: "&  "<b>" & Dropdown1_2.SelectedText.Value & "<br>"&  "</b>" & 
+                "Tipo de Contrato: "&  "<b>" & Dropdown1_1.SelectedText.Value & "<br>"&  "</b>" & 
+                "Tipo de Industria (donde se realizarían): "&  "<b>" & Dropdown1_3.SelectedText.Value & "<br>"&  "</b>" & 
+                "Texto de la oferta: "&  "<b>" & TextInput3_7.Text & "<br>"&  "</b>" & 
+                "Ubicación: "&  "<b>" & TextInput3_8.Text & "<br>"&  "</b>" & 
+                "Actividad: "&  "<b>" & Dropdown1_6.SelectedText.Value & "<br>"&  "</b>" & 
+                "Tipo de la oferta: "&  "<b>" & Dropdown1_4.SelectedText.Value & "<br>"&  "</b>" & 
+                "Importe: "&  "<b>" & TextInput3_15.Text & "<br>"&  "</b>" & 
+                "DB1B%: "&  "<b>" & TextInput3_17.Text & "<br>"&  "</b>" & 
+                "UdN: "&  "<b>" & Dropdown1_7.SelectedText.Value & "<br>"&  "</b>" & 
+                "Calculista: "&  "<b>" & Label10.Text & "<br>"&  "</b>" & 
+                "Responsable: "&  "<b>" & ComboBox4_1.Selected.Value & "<br>"&  "</b>" & 
+                "Tipo de precio: "&  "<b>" & Dropdown1_8.SelectedText.Value & "<br>"&  "</b>" & 
+                "Fecha solicitud de la oferta: "&  "<b>" & TextInput3_3.Text & "<br>"&  "</b>" & 
+                "Fecha entrega de la oferta: "&  "<b>" & TextInput3_6.Text & "<br>"&  "</b>" & 
+                "Fecha Visita: "&  "<b>" & TextInput3_4.Text & "<br>"&  "</b>" & 
+                "Fecha creación: "&  "<b>" & TextInput3_5.Text & "<br>"&  "</b>" & 
+                "EW%: "&  "<b>" & TextInput3_18.Text & "<br>"&  "</b>" & 
+                "Comentarios: "&  "<b>" & TextInput3_30.Text & "<br>"&  "</b>" & 
+                "Cliente Final: "&  "<b>" & Label17_1.Text & "<br>"&  "</b>" & 
+                "Fecha validez: "&  "<b>" & TextInput3_10.Text
+                ),
+                Office365Outlook.SendEmailV2(Label18_1.Text,"Nueva oferta actualizada",
+                "Fecha de actualización: " &  "<b>" & Now()& "<br>" &  "</b>" & 
+                " Nº de la oferta : "&  "<b>" & TextInput3.Text& "<br>" & "<br>"&  "</b>" & 
+                "Estado de la oferta: "&  "<b>" & Dropdown1_5.SelectedText.Value & "<br>"&  "</b>" & 
+                "Cliente: "&  "<b>" & Label17.Text & "<br>"&  "</b>" & 
+                "Tipo de Cliente: "&  "<b>" & Dropdown1_2.SelectedText.Value & "<br>"&  "</b>" & 
+                "Tipo de Contrato: "&  "<b>" & Dropdown1_1.SelectedText.Value & "<br>"&  "</b>" & 
+                "Tipo de Industria (donde se realizarían): "&  "<b>" & Dropdown1_3.SelectedText.Value & "<br>"&  "</b>" & 
+                "Texto de la oferta: "&  "<b>" & TextInput3_7.Text & "<br>"&  "</b>" & 
+                "Ubicación: "&  "<b>" & TextInput3_8.Text & "<br>"&  "</b>" & 
+                "Actividad: "&  "<b>" & Dropdown1_6.SelectedText.Value & "<br>"&  "</b>" & 
+                "Tipo de la oferta: "&  "<b>" & Dropdown1_4.SelectedText.Value & "<br>"&  "</b>" & 
+                "Importe: "&  "<b>" & TextInput3_15.Text & "<br>"&  "</b>" & 
+                "DB1B%: "&  "<b>" & TextInput3_17.Text & "<br>"&  "</b>" & 
+                "UdN: "&  "<b>" & Dropdown1_7.SelectedText.Value & "<br>"&  "</b>" & 
+                "Calculista: "&  "<b>" & Label10.Text & "<br>"&  "</b>" & 
+                "Responsable: "&  "<b>" & ComboBox4_1.Selected.Value & "<br>"&  "</b>" & 
+                "Tipo de precio: "&  "<b>" & Dropdown1_8.SelectedText.Value & "<br>"&  "</b>" & 
+                "Fecha solicitud de la oferta: "&  "<b>" & TextInput3_3.Text & "<br>"&  "</b>" & 
+                "Fecha entrega de la oferta: "&  "<b>" & TextInput3_6.Text & "<br>"&  "</b>" & 
+                "Fecha Visita: "&  "<b>" & TextInput3_4.Text & "<br>"&  "</b>" & 
+                "Fecha creación: "&  "<b>" & TextInput3_5.Text & "<br>"&  "</b>" & 
+                "EW%: "&  "<b>" & TextInput3_18.Text & "<br>"&  "</b>" & 
+                "Comentarios: "&  "<b>" & TextInput3_30.Text & "<br>"&  "</b>" & 
+                "Cliente Final: "&  "<b>" & Label17_1.Text & "<br>"&  "</b>" & 
+                "Fecha validez: "&  "<b>" & TextInput3_10.Text));
+                Refresh('KAEFER-CRM_SP')
+            RadiusBottomLeft: =40
+            RadiusBottomRight: =40
+            RadiusTopLeft: =40
+            RadiusTopRight: =40
+            Text: ="Actualizar"
+            Width: =200
+            X: =486
+            Y: =21
+            ZIndex: =9
+
+        Icon1 As icon.ChevronLeft:
+            Height: =50
+            Icon: =Icon.ChevronLeft
+            OnSelect: |-
+                =Refresh('KAEFER-CRM_SP');
+                If(Label13.Text = "Perfil CRM: Jefe Proyecto",
+                    ClearCollect(col_CRM,
+                ShowColumns(
+                Filter('KAEFER-CRM_SP',Label12.Text in Calculator),
+                "Status","Debitor","Offer_x0020_Number","Offer_x0020_text","Tipo_x0020_de_x0020_Cliente","Tipo_x0020_de_x0020_Industria_x0",
+                "Location","Object","Offer_x0020_Type","Value","DB1B_x0025_","Profit_x0020_center","Calculator","Owner","Tipo_x0020_de_x0020_precio",
+                "Start","End","Visit_x0020_date","Created0","EW_x0025_","Comments","Tipo_x0020_de_x0020_Contrato","Title","ClienteFInal","valid","Creation_x0020_date","Created","Modified","AnoSiguiente")),
+                If(Label13.Text = "Perfil CRM: RUN",
+                    ClearCollect(col_CRM,
+                ShowColumns(
+                Filter('KAEFER-CRM_SP','Profit center' in Label12_1.Text),
+                "Status","Debitor","Offer_x0020_Number","Offer_x0020_text","Tipo_x0020_de_x0020_Cliente","Tipo_x0020_de_x0020_Industria_x0",
+                "Location","Object","Offer_x0020_Type","Value","DB1B_x0025_","Profit_x0020_center","Calculator","Owner","Tipo_x0020_de_x0020_precio",
+                "Start","End","Visit_x0020_date","Created0","EW_x0025_","Comments","Tipo_x0020_de_x0020_Contrato","Title","ClienteFInal","valid","Creation_x0020_date","Created","Modified","AnoSiguiente")),
+                If(Label13.Text = "Perfil CRM: Directivo",
+                    ClearCollect(col_CRM,
+                ShowColumns(Filter('KAEFER-CRM_SP',Or(Status="Pendiente",Status="Consulta")),
+                "Status","Debitor","Offer_x0020_Number","Offer_x0020_text","Tipo_x0020_de_x0020_Cliente","Tipo_x0020_de_x0020_Industria_x0",
+                "Location","Object","Offer_x0020_Type","Value","DB1B_x0025_","Profit_x0020_center","Calculator","Owner","Tipo_x0020_de_x0020_precio",
+                "Start","End","Visit_x0020_date","Created0","EW_x0025_","Comments","Tipo_x0020_de_x0020_Contrato","Title","ClienteFInal","valid","Creation_x0020_date","Created","Modified","AnoSiguiente"))
+                );
+                );
+                );
+                Navigate('Lista Ofertas', ScreenTransition.Fade);
+                Reset(DatePicker1)
+            Width: =50
+            Y: =5
+            ZIndex: =67
+
+        Label7 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =51
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Fecha última modificación: "&ThisItem.Modificado
+            Width: =251
+            X: =201
+            Y: =21
+            ZIndex: =119
+
+        Group8 As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =119
+
+            TextInput3 As text:
+                Align: =Align.Center
+                Default: =ThisItem.'Offer Number'
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =60
+                Y: =182
+                ZIndex: =6
+
+            TextInput3_3 As text:
+                Align: =Align.Center
+                Default: =Gallery1.Selected.Start
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                Format: =ThisItem.Start
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =990
+                Y: =181
+                ZIndex: =10
+
+            TextInput3_4 As text:
+                Align: =Align.Center
+                Default: =ThisItem.'Visit date'
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =990
+                Y: =321
+                ZIndex: =11
+
+            TextInput3_5 As text:
+                Align: =Align.Center
+                Default: =ThisItem.'Creation date'
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =990
+                Y: =391
+                ZIndex: =12
+
+            TextInput3_6 As text:
+                Align: =Align.Center
+                Default: =ThisItem.End
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =990
+                Y: =251
+                ZIndex: =13
+
+            TextInput3_7 As text:
+                Align: =Align.Center
+                Default: =ThisItem.'Offer text'
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =210
+                Mode: =TextMode.MultiLine
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =370
+                Y: =181
+                ZIndex: =14
+
+            TextInput3_8 As text:
+                Align: =Align.Center
+                Default: =ThisItem.Location
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =120
+                Mode: =TextMode.MultiLine
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =370
+                Y: =625
+                ZIndex: =15
+
+            Label3 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Numero Oferta"
+                Width: =300
+                X: =60
+                Y: =152
+                ZIndex: =18
+
+            Label3_2 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Cliente"
+                Width: =300
+                X: =60
+                Y: =291
+                ZIndex: =20
+
+            Label3_3 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="""Start - Fecha solicitud oferta"""
+                Width: =300
+                X: =990
+                Y: =151
+                ZIndex: =21
+
+            Label3_4 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Fecha Visita"
+                Width: =300
+                X: =990
+                Y: =291
+                ZIndex: =22
+
+            Label3_5 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Fecha envío de la oferta"
+                Width: =300
+                X: =990
+                Y: =361
+                ZIndex: =23
+
+            Label3_6 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="End - Fecha entrega oferta"
+                Width: =300
+                X: =990
+                Y: =221
+                ZIndex: =24
+
+            Label3_7 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Texto oferta"
+                Width: =300
+                X: =370
+                Y: =151
+                ZIndex: =25
+
+            Label3_8 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Ubicación"
+                Width: =300
+                X: =370
+                Y: =595
+                ZIndex: =26
+
+            Label3_9 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Responsable Oferta"
+                Width: =300
+                X: =680
+                Y: =513
+                ZIndex: =27
+
+            Label3_10 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="UdN"
+                Width: =300
+                X: =680
+                Y: =355
+                ZIndex: =28
+
+            Label3_11 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Objeto"
+                Width: =300
+                X: =370
+                Y: =391
+                ZIndex: =33
+
+            Label3_13 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Calculista"
+                Width: =300
+                X: =680
+                Y: =426
+                ZIndex: =35
+
+            Label3_14 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Tipo oferta"
+                Width: =300
+                X: =370
+                Y: =461
+                ZIndex: =36
+
+            TextInput3_15 As text:
+                Align: =Align.Center
+                Default: =ThisItem.Value
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =680
+                Y: =181
+                ZIndex: =37
+
+            TextInput3_17 As text:
+                Align: =Align.Center
+                Default: =ThisItem.'DB1B%'
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =680
+                Y: =251
+                ZIndex: =39
+
+            TextInput3_18 As text:
+                Align: =Align.Center
+                Default: =ThisItem.'EW%'
+                Fill: =RGBA(251, 188, 159, 1)
+                FontWeight: =FontWeight.Semibold
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =990
+                Y: =596
+                ZIndex: =40
+
+            Label3_15 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Valor"
+                Width: =300
+                X: =680
+                Y: =151
+                ZIndex: =48
+
+            Label3_17 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Margen Sobre Venta - %"
+                Width: =300
+                X: =680
+                Y: =221
+                ZIndex: =50
+
+            Label3_18 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Tasa de Éxito - %"
+                Width: =300
+                X: =990
+                Y: =566
+                ZIndex: =51
+
+            Label3_20 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Tipo cliente"
+                Width: =300
+                X: =60
+                Y: =361
+                ZIndex: =53
+
+            Label3_21 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Tipo Industria"
+                Width: =300
+                X: =60
+                Y: =501
+                ZIndex: =54
+
+            Label3_22 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Tipo Contrato"
+                Width: =300
+                X: =60
+                Y: =431
+                ZIndex: =55
+
+            Label3_23 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Tipo de precio"
+                Width: =300
+                X: =680
+                Y: =603
+                ZIndex: =56
+
+            TextInput3_30 As text:
+                Align: =Align.Center
+                Default: =ThisItem.Comments
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =80
+                Mode: =TextMode.MultiLine
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =990
+                Y: =666
+                ZIndex: =68
+
+            Label3_30 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Comentarios"
+                Width: =300
+                X: =990
+                Y: =636
+                ZIndex: =69
+
+            Label4 As label:
+                Align: =Align.Center
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(0, 18, 107, 1)
+                FontWeight: =FontWeight.Bold
+                OnSelect: =Select(Parent)
+                Size: =15
+                Text: =Label4_7.Text
+                Width: =300
+                X: =60
+                Y: =101
+                ZIndex: =80
+
+            Label4_1 As label:
+                Align: =Align.Center
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(0, 18, 107, 1)
+                FontWeight: =FontWeight.Bold
+                OnSelect: =Select(Parent)
+                Size: =15
+                Text: =Label4_8.Text
+                Width: =300
+                X: =370
+                Y: =101
+                ZIndex: =81
+
+            Label4_2 As label:
+                Align: =Align.Center
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(0, 18, 107, 1)
+                FontWeight: =FontWeight.Bold
+                OnSelect: =Select(Parent)
+                Size: =15
+                Text: =Label4_13.Text
+                Width: =300
+                X: =370
+                Y: =543
+                ZIndex: =82
+
+            Label4_3 As label:
+                Align: =Align.Center
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(0, 18, 107, 1)
+                FontWeight: =FontWeight.Bold
+                OnSelect: =Select(Parent)
+                Size: =15
+                Text: =Label4_9.Text
+                Width: =300
+                X: =680
+                Y: =101
+                ZIndex: =83
+
+            Label4_4 As label:
+                Align: =Align.Center
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(0, 18, 107, 1)
+                FontWeight: =FontWeight.Bold
+                OnSelect: =Select(Parent)
+                Size: =15
+                Text: =Label4_10.Text
+                Width: =300
+                X: =990
+                Y: =101
+                ZIndex: =84
+
+            Label4_5 As label:
+                Align: =Align.Center
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(0, 18, 107, 1)
+                FontWeight: =FontWeight.Bold
+                OnSelect: =Select(Parent)
+                Size: =15
+                Text: =Label4_11.Text
+                Width: =300
+                X: =680
+                Y: =303
+                ZIndex: =85
+
+            Label4_6 As label:
+                Align: =Align.Center
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(0, 18, 107, 1)
+                FontWeight: =FontWeight.Bold
+                OnSelect: =Select(Parent)
+                Size: =15
+                Text: =Label4_12.Text
+                Width: =300
+                X: =990
+                Y: =516
+                ZIndex: =86
+
+            Label3_40 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Status"
+                Width: =300
+                X: =60
+                Y: =222
+                ZIndex: =97
+
+            Dropdown1_1 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =Gallery1.Selected.'Tipo de Contrato'
+                Fill: =RGBA(241, 244, 249, 1)
+                Items: =SAP_TIPOCONTRATO
+                OnSelect: =Select(Parent)
+                Tooltip: =false
+                Width: =300
+                X: =60
+                Y: =462
+                ZIndex: =99
+
+            Dropdown1_2 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =Gallery1.Selected.'Tipo de Cliente'
+                Fill: =RGBA(241, 244, 249, 1)
+                Items: =SAP_TIPOCLIENTE.Name
+                OnSelect: =Select(Parent)
+                Tooltip: =false
+                Width: =300
+                X: =60
+                Y: =391
+                ZIndex: =100
+
+            Dropdown1_3 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =Gallery1.Selected.'Tipo de Industria (donde se realizarían)'
+                Fill: =RGBA(241, 244, 249, 1)
+                Height: =38
+                Items: =SAP_SECTORCLIENTE
+                OnSelect: =Select(Parent)
+                Tooltip: =false
+                Width: =300
+                X: =60
+                Y: =531
+                ZIndex: =101
+
+            Dropdown1_4 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =Gallery1.Selected.'Offer Type'
+                Fill: =RGBA(241, 244, 249, 1)
+                Items: =["...","Oferta","Preoferta","Expectativas"]
+                OnSelect: =Select(Parent)
+                Tooltip: =false
+                Width: =300
+                X: =370
+                Y: =491
+                ZIndex: =102
+
+            Dropdown1_5 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =Gallery1.Selected.Status
+                Fill: =RGBA(251, 188, 159, 1)
+                Items: =["...","Consulta","Pendiente","Desestimada","Adjudicada","Anulada"]
+                OnSelect: =Select(Parent)
+                Tooltip: =false
+                Width: =300
+                X: =60
+                Y: =252
+                ZIndex: =103
+
+            Dropdown1_6 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =Gallery1.Selected.Object
+                Fill: =RGBA(241, 244, 249, 1)
+                Items: =SAP_ACTIVIDADES
+                OnSelect: =Select(Parent)
+                Tooltip: =false
+                Width: =300
+                X: =370
+                Y: =421
+                ZIndex: =104
+
+            Dropdown1_7 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =Gallery1.Selected.'Profit center'
+                Fill: =RGBA(241, 244, 249, 1)
+                Items: =Sort(GroupBy('KAEFER-CRM_SP',"Profit_x0020_center","ID"),Profit_x0020_center,Ascending)
+                OnSelect: =Select(Parent)
+                Tooltip: =false
+                Width: =300
+                X: =680
+                Y: =385
+                ZIndex: =105
+
+            Dropdown1_8 As dropdown:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                Default: =Gallery1.Selected.'Tipo de precio'
+                Fill: =RGBA(241, 244, 249, 1)
+                Items: |-
+                    =["...","Precio Cerrado/Partida Alzada",
+                    "Precios por administración",
+                    "Precios Unitarios"
+                    ]
+                OnSelect: =Select(Parent)
+                Size: =10
+                Tooltip: =false
+                Width: =300
+                X: =680
+                Y: =633
+                ZIndex: =106
+
+            Label3_12 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Cliente Final"
+                Width: =300
+                X: =60
+                Y: =568
+                ZIndex: =108
+
+            TextInput3_10 As text:
+                Align: =Align.Center
+                Default: =ThisItem.valid
+                Fill: =RGBA(241, 244, 249, 1)
+                FontWeight: =FontWeight.Semibold
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =990
+                Y: =462
+                ZIndex: =115
+
+            Label3_47 As label:
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: ="Fecha validez de la oferta"
+                Width: =300
+                X: =990
+                Y: =432
+                ZIndex: =116
+
+            ComboBox1_3 As combobox:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                DefaultSelectedItems: =[Gallery1.Selected.Debitor]
+                DisplayFields: =["CardName"]
+                Items: =If(Toggle3.Value=true,OCRD,Col_clientes)
+                OnSelect: =Select(Parent)
+                SearchFields: =["CardName"]
+                SearchItems: =Search(If(Toggle3.Value=true,OCRD,Col_clientes),ComboBox1_3.SearchText,"CardName")
+                SelectMultiple: =false
+                Size: =10
+                Width: =300
+                X: =60
+                Y: =322
+                ZIndex: =117
+
+            ComboBox1_4 As combobox:
+                ChevronBackground: =RGBA(0, 134, 208, 1)
+                DefaultSelectedItems: =[Gallery1.Selected.'Cliente FInal']
+                DisplayFields: =["CardName"]
+                Items: =If(Toggle3.Value=true,OCRD,Col_clientes)
+                OnSelect: =Select(Parent)
+                SearchFields: =["CardName"]
+                SearchItems: =Search(If(Toggle3.Value=true,OCRD,Col_clientes),ComboBox1_4.SearchText,"CardName")
+                SelectMultiple: =false
+                Size: =10
+                Width: =300
+                X: =60
+                Y: =598
+                ZIndex: =118
+
+        ComboBox4 As combobox:
+            DefaultSelectedItems: =[ThisItem.Calculator]
+            DisplayFields: =["Value"]
+            Fill: =RGBA(251, 188, 159, 1)
+            Height: =37
+            Items: |-
+                =["...","Jesús Carrobles",
+                "Alfonso Cerezo",
+                "David Calvo",
+                "Antonio Martín",
+                "Marcos Calle",
+                "Luis Mari Calvo",
+                "Manu Castaneda",
+                "Emilio Diez",
+                "Mikel De Blas",
+                "Celso Linares",
+                "Fernando Regueira",
+                "Jesús Calvo",
+                "Ricardo Moral",
+                "Rubén Page",
+                "Sergio Gonzalez",
+                "David Runza",
+                "Ignacio Ovies",
+                "Aitor Bayón",
+                "Fernando Ogazón",
+                "Jaiver Bilbao",
+                "Alberto Valles",
+                "Paula Argüeso",
+                "Gonzalo Güerri",
+                "Juan José Pichel",
+                "Antonio Martinez",
+                "José Antonio Leal",
+                "Juanele Ruiz",
+                "Juan José Gallardo",
+                "Alejandro Martín",
+                "Sebastián Garrucho",
+                "Juan Antonio Ruiz",
+                "Antonio Camelo",
+                "Ismael Vaca",
+                "Jairo Lorenzo",
+                "Manuel Lopez Molina",
+                "Jose Antonio Merino",
+                "Augusto Mattessich",
+                "Juan María Lopez",
+                "Leandro Carbajales",
+                "Khalil Benjelloul",
+                "Daniel Padilla",
+                "Mihaela Catalina Banita",
+                "Asturias",
+                "Cataluña",
+                "Central",
+                "Galicia",
+                "Levante",
+                "Pais Vasco",
+                "Proy Singulares",
+                "Sur-Cádiz",
+                "Sur-Huelva"]
+            OnSelect: =Select(Parent)
+            SearchFields: =["Value"]
+            SearchItems: |-
+                =Search(["...","Jesús Carrobles",
+                "Alfonso Cerezo",
+                "David Calvo",
+                "Antonio Martín",
+                "Marcos Calle",
+                "Luis Mari Calvo",
+                "Manu Castaneda",
+                "Emilio Diez",
+                "Mikel De Blas",
+                "Celso Linares",
+                "Fernando Regueira",
+                "Jesús Calvo",
+                "Ricardo Moral",
+                "Rubén Page",
+                "Sergio Gonzalez",
+                "David Runza",
+                "Ignacio Ovies",
+                "Aitor Bayón",
+                "Fernando Ogazón",
+                "Jaiver Bilbao",
+                "Alberto Valles",
+                "Paula Argüeso",
+                "Gonzalo Güerri",
+                "Juan José Pichel",
+                "Antonio Martinez",
+                "José Antonio Leal",
+                "Juanele Ruiz",
+                "Juan José Gallardo",
+                "Alejandro Martín",
+                "Sebastián Garrucho",
+                "Juan Antonio Ruiz",
+                "Antonio Camelo",
+                "Ismael Vaca",
+                "Jairo Lorenzo",
+                "Manuel Lopez Molina",
+                "Jose Antonio Merino",
+                "Augusto Mattessich",
+                "Juan María Lopez",
+                "Leandro Carbajales",
+                "Khalil Benjelloul",
+                "Daniel Padilla",
+                "Mihaela Catalina Banita",
+                "Asturias",
+                "Cataluña",
+                "Central",
+                "Galicia",
+                "Levante",
+                "Pais Vasco",
+                "Proy Singulares",
+                "Sur-Cádiz",
+                "Sur-Huelva"],ComboBox4.SearchText,"Value")
+            Width: =300
+            X: =680
+            Y: =458
+            ZIndex: =120
+
+        Label10 As label:
+            Height: =32
+            OnSelect: =Select(Parent)
+            Text: =If(CountA(ComboBox4.SelectedItems.Value)>1,Concat(ComboBox4.SelectedItems, Value & ", "),First(ComboBox4.SelectedItems).Value)
+            Visible: =false
+            Width: =244
+            X: =708
+            Y: =49
+            ZIndex: =121
+
+        Label11 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.Calculator
+            Width: =300
+            X: =680
+            Y: =493
+            ZIndex: =123
+
+        Label11_1 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.Owner
+            Width: =300
+            X: =680
+            Y: =583
+            ZIndex: =124
+
+        Button1_2 As button:
+            Height: =35
+            OnSelect: |-
+                =Patch('KAEFER-CRM_SP',
+                Defaults('KAEFER-CRM_SP'),
+                {
+                'Offer Number':TextInput3.Text,
+                Status:Dropdown1_5.SelectedText.Value,
+                Debitor:ComboBox1_3.Selected.CardName,
+                'Tipo de Cliente':Dropdown1_2.SelectedText.Value,
+                'Tipo de Contrato':Dropdown1_1.SelectedText.Value,
+                'Tipo de Industria (donde se realizarían)':Dropdown1_3.SelectedText.Value,
+                'Offer text':TextInput3_7.Text,
+                Location:TextInput3_8.Text,
+                Object:Dropdown1_6.SelectedText.Value,
+                'Offer Type':Dropdown1_4.SelectedText.Value,
+                Value:TextInput3_15.Text,
+                'DB1B%':TextInput3_17.Text,
+                'Profit center':Dropdown1_7.SelectedText.Value,
+                Calculator:Label10.Text,
+                Owner:ComboBox4_1.Selected.Value,
+                'Tipo de precio':Dropdown1_8.SelectedText.Value,
+                Start:TextInput3_3.Text,
+                End:TextInput3_6.Text,
+                'Visit date':TextInput3_4.Text,
+                'Creation date':TextInput3_5.Text,
+                'EW%':TextInput3_18.Text,
+                Comments:TextInput3_30.Text,
+                'Cliente FInal':ComboBox1_4.Selected.CardName,
+                valid:TextInput3_10.Text
+                });
+                Back();Refresh('KAEFER-CRM_SP')
+            RadiusBottomLeft: =40
+            RadiusBottomRight: =40
+            RadiusTopLeft: =40
+            RadiusTopRight: =40
+            Text: ="Crear Nueva"
+            Visible: =If(Toggle4.Value=true,true,false)
+            Width: =200
+            X: =840
+            Y: =35
+            ZIndex: =125
+
+        Toggle4 As toggleSwitch:
+            FalseText: ="Crear nueva"
+            Height: =20
+            OnSelect: =Select(Parent)
+            TrueText: ="Crear nueva"
+            Width: =200
+            X: =840
+            Y: =10
+            ZIndex: =126
+
+        ComboBox4_1 As combobox:
+            DefaultSelectedItems: =[ThisItem.Owner]
+            DisplayFields: =["Value"]
+            Fill: =RGBA(251, 188, 159, 1)
+            Height: =37
+            Items: |-
+                =["...","Jesús Carrobles",
+                "Alfonso Cerezo",
+                "David Calvo",
+                "Antonio Martín",
+                "Marcos Calle",
+                "Luis Mari Calvo",
+                "Manu Castaneda",
+                "Emilio Diez",
+                "Mikel De Blas",
+                "Celso Linares",
+                "Fernando Regueira",
+                "Jesús Calvo",
+                "Ricardo Moral",
+                "Rubén Page",
+                "Sergio Gonzalez",
+                "David Runza",
+                "Ignacio Ovies",
+                "Aitor Bayón",
+                "Fernando Ogazón",
+                "Jaiver Bilbao",
+                "Alberto Valles",
+                "Paula Argüeso",
+                "Gonzalo Güerri",
+                "Juan José Pichel",
+                "Antonio Martinez",
+                "José Antonio Leal",
+                "Juanele Ruiz",
+                "Juan José Gallardo",
+                "Alejandro Martín",
+                "Sebastián Garrucho",
+                "Juan Antonio Ruiz",
+                "Antonio Camelo",
+                "Ismael Vaca",
+                "Jairo Lorenzo",
+                "Manuel Lopez Molina",
+                "Jose Antonio Merino",
+                "Augusto Mattessich",
+                "Juan María Lopez",
+                "Leandro Carbajales",
+                "Khalil Benjelloul",
+                "Daniel Padilla",
+                "Mihaela Catalina Banita",
+                "Asturias",
+                "Cataluña",
+                "Central",
+                "Galicia",
+                "Levante",
+                "Pais Vasco",
+                "Proy Singulares",
+                "Sur-Cádiz",
+                "Sur-Huelva"]
+            OnSelect: =Select(Parent)
+            SearchFields: =["Value"]
+            SearchItems: |-
+                =Search(["...","Jesús Carrobles",
+                "Alfonso Cerezo",
+                "David Calvo",
+                "Antonio Martín",
+                "Marcos Calle",
+                "Luis Mari Calvo",
+                "Manu Castaneda",
+                "Emilio Diez",
+                "Mikel De Blas",
+                "Celso Linares",
+                "Fernando Regueira",
+                "Jesús Calvo",
+                "Ricardo Moral",
+                "Rubén Page",
+                "Sergio Gonzalez",
+                "David Runza",
+                "Ignacio Ovies",
+                "Aitor Bayón",
+                "Fernando Ogazón",
+                "Jaiver Bilbao",
+                "Alberto Valles",
+                "Paula Argüeso",
+                "Gonzalo Güerri",
+                "Juan José Pichel",
+                "Antonio Martinez",
+                "José Antonio Leal",
+                "Juanele Ruiz",
+                "Juan José Gallardo",
+                "Alejandro Martín",
+                "Sebastián Garrucho",
+                "Juan Antonio Ruiz",
+                "Antonio Camelo",
+                "Ismael Vaca",
+                "Jairo Lorenzo",
+                "Manuel Lopez Molina",
+                "Jose Antonio Merino",
+                "Augusto Mattessich",
+                "Juan María Lopez",
+                "Leandro Carbajales",
+                "Khalil Benjelloul",
+                "Daniel Padilla",
+                "Mihaela Catalina Banita",
+                "Asturias",
+                "Cataluña",
+                "Central",
+                "Galicia",
+                "Levante",
+                "Pais Vasco",
+                "Proy Singulares",
+                "Sur-Cádiz",
+                "Sur-Huelva"],ComboBox4_1.SearchText,"Value")
+            SelectMultiple: =false
+            Width: =300
+            X: =680
+            Y: =543
+            ZIndex: =127
+
+        TextInput9 As text:
+            Align: =Align.Center
+            Default: =Gallery1.Selected.AnoSiguiente
+            OnSelect: =Select(Parent)
+            Width: =150
+            X: =759
+            Y: =710
+            ZIndex: =130
+
+        Group2 As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =130
+
+            Label17 As label:
+                Height: =35
+                OnSelect: =Select(Parent)
+                Text: =If(Len(ComboBox1_3.Selected.CardName)=0,ThisItem.Debitor,ComboBox1_3.Selected.CardName)
+                Visible: =false
+                Width: =347
+                X: =13
+                Y: =675
+                ZIndex: =128
+
+            Label17_1 As label:
+                Height: =35
+                OnSelect: =Select(Parent)
+                Text: =If(Len(ComboBox1_4.Selected.CardName)=0,ThisItem.'Cliente FInal',ComboBox1_4.Selected.CardName)
+                Visible: =false
+                Width: =347
+                X: =13
+                Y: =720
+                ZIndex: =129
+
+        Label3_48 As label:
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(56, 96, 178, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="% 2022"
+            X: =759
+            Y: =680
+            ZIndex: =131
+
+    Image2_1 As image:
+        Height: =73
+        Image: ='KAEFER count on us'
+        Width: =296
+        X: =1064
+        Y: =6
+        ZIndex: =2
+
+    Gallery6 As gallery.galleryVertical:
+        Fill: =RGBA(255, 255, 255, 1)
+        Items: =Filter('KAEFER-CRM_SP',Gallery1.Selected.'Offer Number'='Offer Number')
+        Layout: =Layout.Vertical
+        TemplateSize: =568
+        Visible: =deloffer
+        X: =399
+        Y: =90
+        ZIndex: =3
+
+        Label20 As label:
+            Align: =Align.Center
+            Color: =RGBA(168, 0, 0, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =102
+            OnSelect: =Select(Parent)
+            Size: =40
+            Text: =ThisItem.'Offer Number'
+            Width: =590
+            X: =25
+            Y: =5
+            ZIndex: =1
+
+        Icon6 As icon.Trash:
+            Height: =181
+            Icon: =Icon.Trash
+            OnSelect: =Select(Parent)
+            Width: =276
+            X: =182
+            Y: =107
+            ZIndex: =2
+
+        Label20_1 As label:
+            Align: =Align.Center
+            Color: =RGBA(168, 0, 0, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =102
+            OnSelect: =Select(Parent)
+            Size: =40
+            Text: ="ELIMINAR OFERTA ?"
+            Width: =590
+            X: =25
+            Y: =288
+            ZIndex: =3
+
+        Button16 As button:
+            Height: =75
+            OnSelect: |-
+                =Remove('KAEFER-CRM_SP', ThisItem);Set(deloffer,false);
+                Refresh('KAEFER-CRM_SP');
+                If(Label13.Text = "Perfil CRM: Jefe Proyecto",
+                    ClearCollect(col_CRM,
+                ShowColumns(
+                Filter('KAEFER-CRM_SP',Label12.Text in Calculator),
+                "Status","Debitor","Offer_x0020_Number","Offer_x0020_text","Tipo_x0020_de_x0020_Cliente","Tipo_x0020_de_x0020_Industria_x0",
+                "Location","Object","Offer_x0020_Type","Value","DB1B_x0025_","Profit_x0020_center","Calculator","Owner","Tipo_x0020_de_x0020_precio",
+                "Start","End","Visit_x0020_date","Created0","EW_x0025_","Comments","Tipo_x0020_de_x0020_Contrato","Title","ClienteFInal","valid","Creation_x0020_date","Created","Modified")),
+                If(Label13.Text = "Perfil CRM: RUN",
+                    ClearCollect(col_CRM,
+                ShowColumns(
+                Filter('KAEFER-CRM_SP','Profit center' in Label12_1.Text),
+                "Status","Debitor","Offer_x0020_Number","Offer_x0020_text","Tipo_x0020_de_x0020_Cliente","Tipo_x0020_de_x0020_Industria_x0",
+                "Location","Object","Offer_x0020_Type","Value","DB1B_x0025_","Profit_x0020_center","Calculator","Owner","Tipo_x0020_de_x0020_precio",
+                "Start","End","Visit_x0020_date","Created0","EW_x0025_","Comments","Tipo_x0020_de_x0020_Contrato","Title","ClienteFInal","valid","Creation_x0020_date","Created","Modified")),
+                If(Label13.Text = "Perfil CRM: Directivo",
+                    ClearCollect(col_CRM,
+                ShowColumns(Filter('KAEFER-CRM_SP',Or(Status="Pendiente",Status="Consulta")),
+                "Status","Debitor","Offer_x0020_Number","Offer_x0020_text","Tipo_x0020_de_x0020_Cliente","Tipo_x0020_de_x0020_Industria_x0",
+                "Location","Object","Offer_x0020_Type","Value","DB1B_x0025_","Profit_x0020_center","Calculator","Owner","Tipo_x0020_de_x0020_precio",
+                "Start","End","Visit_x0020_date","Created0","EW_x0025_","Comments","Tipo_x0020_de_x0020_Contrato","Title","ClienteFInal","valid","Creation_x0020_date","Created","Modified"))
+                );
+                );
+                );
+                Navigate('Lista Ofertas', ScreenTransition.Fade);
+                Reset(DatePicker1)
+            Size: =25
+            Text: ="ELIMINAR"
+            Width: =250
+            X: =50
+            Y: =440
+            ZIndex: =4
+
+        Button16_1 As button:
+            Height: =75
+            OnSelect: =Set(deloffer,false);Back()
+            Size: =25
+            Text: ="VOLVER"
+            Width: =250
+            X: =350
+            Y: =440
+            ZIndex: =5
+
+    Label18_1 As label:
+        Height: =50
+        OnSelect: =
+        Size: =6
+        Text: =LookUp(KAEFER_Usuarios,Nombre=ComboBox4.Selected.Value,E_x002d_mail)&"; "&LookUp(KAEFER_Usuarios,Nombre=ComboBox4_1.Selected.Value,E_x002d_mail)&"; michal@kaefer.es"&"; "&User().Email
+        Visible: =false
+        Width: =360
+        X: =704
+        Y: =40
+        ZIndex: =4
+
