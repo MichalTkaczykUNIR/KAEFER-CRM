@@ -1,0 +1,672 @@
+"'Lista Ofertas' As screen":
+    BackgroundImage: =bck5
+    Fill: =RGBA(215, 223, 240, 1)
+
+    "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =602
+        Items: |-
+            =Sort(
+                If(Toggle3.Value=true,
+                If(
+            Toggle2.Value=false,
+            Filter('KAEFER-CRM_SP',
+            TextInput1.Text in 'Offer Number',
+            TextInput1_6.Text in 'Offer text',
+            TextInput1_1.Text in Object,
+            If(Len(TextInput1_2.Text)>0,TextInput1_2.Text in Debitor,
+            Status in ComboBox1_5.SelectedItems.Status,
+            'Profit center'in ComboBox1.SelectedItems.Profit_x0020_center,
+            TextInput1_5.Text in 'Tipo de Industria (donde se realizarían)',
+            DatePicker1.SelectedDate < Creado
+            )),
+            Filter('KAEFER-CRM_SP',
+            Len(Calculator)=0,
+            TextInput1.Text in 'Offer Number',
+            Status="Consulta"
+            )),
+            If(Checkbox1_1.Value=true,
+            If(Toggle2.Value=true,
+            Filter(col_CRM,
+            Len(Calculator)<1,
+            TextInput1.Text in Offer_x0020_Number,
+            TextInput1_6.Text in Offer_x0020_text,
+            Status="Consulta"),
+            Filter(col_CRM,
+            TextInput1.Text in Offer_x0020_Number,
+            TextInput1_6.Text in Offer_x0020_text,
+            TextInput1_1.Text in Object,
+            If(Len(TextInput1_2.Text)>0,TextInput1_2.Text in Debitor,
+            Status in ComboBox1_5.SelectedItems.Status,
+            If(Len(TextInput1_4.Text)>0,TextInput1_4.Text in Calculator,
+            If(Len(TextInput1_7.Text)>0,TextInput1_7.Text in Owner,
+            TextInput1_5.Text in Tipo_x0020_de_x0020_Industria_x0,
+            DatePicker1.SelectedDate < Created
+            ))))),
+             If(
+            Toggle2.Value=false,
+            Filter(col_CRM,
+            TextInput1.Text in Offer_x0020_Number,
+            Profit_x0020_center in ComboBox1.SelectedItems.Profit_x0020_center,
+            TextInput1_1.Text in Object,
+            If(Len(TextInput1_2.Text)>0,TextInput1_2.Text in Debitor,
+            Status in ComboBox1_5.SelectedItems.Status,
+            If(Len(TextInput1_4.Text)>0,TextInput1_4.Text in Calculator,
+            If(Len(TextInput1_7.Text)>0,TextInput1_7.Text in Owner,
+            TextInput1_5.Text in Tipo_x0020_de_x0020_Industria_x0,
+            DatePicker1.SelectedDate < Created,
+            TextInput1_6.Text in Offer_x0020_text
+            )))),
+            Filter(col_CRM,
+            Len(Calculator)<1,
+            TextInput1.Text in Offer_x0020_Number,
+            Status="Consulta"
+            )))
+            ),
+            Creado,Descending)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =75
+        Width: =1366
+        Y: =166
+        ZIndex: =1
+
+        Image1 As image:
+            Height: =35
+            Image: |-
+                =If(ThisItem.Object="AISLAMIENTO",'KAE-Icon-Insulation-N-RGB',
+                If(ThisItem.Object="Aislamiento",'KAE-Icon-Insulation-N-RGB',
+                If(ThisItem.Object="ANDAMIOS",'KAE-Icon-Access-N-RGB 1',
+                If(ThisItem.Object="Andamios",'KAE-Icon-Access-N-RGB 1',
+                If(ThisItem.Object="PINTURAS",images,
+                If(ThisItem.Object="Pinturas",images,
+                If(ThisItem.Object="ROPE ACCESS",'KAE-Icon-RopeAccess-N-RGB',
+                If(ThisItem.Object="Rope Access",'KAE-Icon-RopeAccess-N-RGB',
+                If(ThisItem.Object="PROTECCIÓN CI",PFP,
+                If(ThisItem.Object="Proteccion CI",PFP,
+                If(ThisItem.Object="DESAMIANTADO",AMIANTO,
+                If(ThisItem.Object="Desamiantado",AMIANTO,
+                If(ThisItem.Object="HABILITACIÓN",HABILITACION,
+                If(ThisItem.Object="Habilitacion",HABILITACION,
+                If(ThisItem.Object="NDT",NDT,
+                If(ThisItem.Object="Ensayos no destructivos",NDT,
+                'KAE-Icon-Energy-Prod.-Industry-N-RGB'))))))))))))))))
+            OnSelect: =Select(Parent)
+            Width: =35
+            X: =43
+            Y: =20
+            ZIndex: =1
+
+        Title1 As label:
+            Height: =25
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Nº Oferta: "&ThisItem.'Offer Number'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =200
+            X: =130
+            ZIndex: =2
+
+        Subtitle1 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Estado: "&ThisItem.Status
+            VerticalAlign: =VerticalAlign.Top
+            X: =1180
+            ZIndex: =3
+
+        NextArrow1 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Height: =40
+            Icon: =Icon.ChevronRight
+            OnSelect: =Navigate('Edit oferta', ScreenTransition.Fade)
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            TabIndex: =0
+            Tooltip: ="Ver los detalles del elemento"
+            Width: =40
+            X: =1305
+            Y: =15
+            ZIndex: =4
+
+        Separator1 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
+        Subtitle1_1 As label:
+            Align: =Align.Center
+            Height: =25
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Actividad: "&ThisItem.Object
+            VerticalAlign: =VerticalAlign.Top
+            Width: =250
+            X: =330
+            ZIndex: =6
+
+        Subtitle1_2 As label:
+            Height: =50
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Cliente: "&ThisItem.Debitor
+            VerticalAlign: =VerticalAlign.Top
+            Width: =300
+            X: =580
+            ZIndex: =7
+
+        Subtitle1_3 As label:
+            Align: =Align.Center
+            Height: =50
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="UdN: "&ThisItem.'Profit center'
+            VerticalAlign: =VerticalAlign.Top
+            X: =880
+            ZIndex: =8
+
+        Subtitle1_4 As label:
+            Align: =Align.Center
+            Height: =50
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Importe: "&ThisItem.Value
+            VerticalAlign: =VerticalAlign.Top
+            X: =1030
+            ZIndex: =9
+
+        Title1_1 As label:
+            Align: =Align.Center
+            Height: =36
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =8
+            Text: =ThisItem.Calculator
+            VerticalAlign: =VerticalAlign.Top
+            Width: =120
+            ZIndex: =10
+
+        Icon3 As icon.Trash:
+            Height: =30
+            Icon: =Icon.Trash
+            OnSelect: =Navigate('Edit oferta', ScreenTransition.Fade);Set(deloffer,true)
+            Visible: |-
+                =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+            Width: =30
+            Y: =18
+            ZIndex: =11
+
+        Title1_2 As label:
+            Height: =25
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Start: "&ThisItem.Start
+            VerticalAlign: =VerticalAlign.Top
+            Width: =200
+            X: =130
+            Y: =25
+            ZIndex: =12
+
+        Subtitle1_5 As label:
+            Align: =Align.Center
+            Height: =25
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Sector: "&ThisItem.'Tipo de Industria (donde se realizarían)'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =250
+            X: =330
+            Y: =25
+            ZIndex: =13
+
+        Title1_3 As label:
+            Height: =25
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Texto: "&ThisItem.'Offer text'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =1170
+            X: =130
+            Y: =50
+            ZIndex: =14
+
+        Title1_4 As label:
+            Align: =Align.Center
+            Height: =20
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =8
+            Text: =ThisItem.Creado
+            Width: =120
+            Y: =54
+            ZIndex: =15
+
+        Subtitle1_6 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =35
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="End: "&ThisItem.End
+            VerticalAlign: =VerticalAlign.Top
+            Width: =130
+            X: =1180
+            Y: =20
+            ZIndex: =16
+
+        Subtitle1_12 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Resp: "&ThisItem.Owner
+            VerticalAlign: =VerticalAlign.Top
+            X: =1180
+            Y: =55
+            ZIndex: =17
+
+    Image2 As image:
+        Height: =73
+        Image: ='KAEFER count on us'
+        Width: =296
+        X: =1062
+        Y: =6
+        ZIndex: =2
+
+    Label1 As label:
+        Align: =Align.Center
+        Height: =24
+        Size: =10
+        Text: |-
+            ="items: "&CountRows(Gallery1.AllItems)&"/"&CountRows(Filter('KAEFER-CRM_SP',Or(Status="Pendiente",Status="Consulta")))&"/"&CountRows(col_CRM)
+        Tooltip: ="Ofertas Visualizadas / Ofertas en Base de datos / Ofertas en memoria local"
+        Width: =160
+        X: =900
+        Y: =56
+        ZIndex: =3
+
+    TextInput1 As text:
+        Default: =""
+        Height: =30
+        HintText: ="Nº Oferta"
+        Size: =10
+        Width: =175
+        X: =90
+        Y: =89
+        ZIndex: =6
+
+    Button3_1 As button:
+        OnSelect: =Navigate('Add oferta', ScreenTransition.Fade)
+        RadiusBottomLeft: =40
+        RadiusBottomRight: =40
+        RadiusTopLeft: =40
+        RadiusTopRight: =40
+        Text: ="Nueva Oferta"
+        X: =900
+        Y: =10
+        ZIndex: =15
+
+    Icon2 As icon.Cancel:
+        Height: =50
+        Icon: =Icon.Cancel
+        OnSelect: =Clear(col_CRM);Navigate('Main CRM',Fade)
+        Width: =50
+        X: =1316
+        Y: =79
+        ZIndex: =16
+
+    TextInput1_1 As text:
+        Default: =""
+        Height: =30
+        HintText: ="Actividad"
+        Size: =10
+        Width: =175
+        X: =300
+        Y: =89
+        ZIndex: =17
+
+    TextInput1_2 As text:
+        Default: =""
+        Height: =30
+        HintText: ="Cliente"
+        Size: =10
+        Width: =175
+        X: =500
+        Y: =89
+        ZIndex: =18
+
+    TextInput1_5 As text:
+        Default: =""
+        Height: =30
+        HintText: ="Sector"
+        Size: =10
+        Width: =175
+        X: =300
+        Y: =119
+        ZIndex: =21
+
+    TextInput1_6 As text:
+        Default: =""
+        Height: =30
+        HintText: ="Texto Oferta"
+        Size: =10
+        Width: =175
+        X: =90
+        Y: =119
+        ZIndex: =22
+
+    DatePicker1 As datepicker:
+        DefaultDate: =01/01/2021
+        Height: =30
+        Size: =11
+        StartOfWeek: =StartOfWeek.Monday
+        StartYear: =2019
+        Width: =200
+        X: =930
+        Y: =119
+        ZIndex: =24
+
+    Label2 As label:
+        Text: =
+        Width: =91
+        X: =1062
+        Y: =114
+        ZIndex: =25
+
+    Toggle2 As toggleSwitch:
+        FalseText: ="Ver Sin Calculista"
+        Height: =20
+        Size: =10
+        TrueText: ="NO ASIGNADAS"
+        Visible: |-
+            =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+        Width: =160
+        X: =700
+        Y: =129
+        ZIndex: =26
+
+    Button4 As button:
+        Height: =26
+        OnSelect: |
+            =ClearCollect(Col_NO_Asignadas,{NumOff:Gallery1.AllItems.'Offer Number',Cliente: Gallery1.AllItems.Debitor,Texto: Gallery1.AllItems.'Offer text'});
+            Office365Outlook.SendEmailV2("michal@kaefer.es; mtrobo@kaefer.es ", "Listado de Ofertas",
+            "Fecha de actualización: "&Now()&" Nº de las ofertas: "&CountRows(Gallery1.AllItems)& "<br>"& "<br>"
+            &Concat(Gallery1.AllItems,"<b>" & Title1 & "</b>" &  "&nbsp;&nbsp;" & Subtitle1_2 & "&nbsp;&nbsp;" & Title1_3 &"<b>" &"<b>" & "&nbsp;&nbsp;" & Subtitle1_6 &"</b>" & "<br>"& "  Calculista: " & Title1_1 & "</b>" &"<br>"&"<br>" ))
+        Size: =10
+        Text: ="E-mail Ofertas"
+        Visible: |-
+            =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+        Width: =175
+        X: =1141
+        Y: =119
+        ZIndex: =27
+
+    Icon4 As icon.Add:
+        Height: =50
+        Icon: =Icon.Reload
+        OnSelect: =Refresh('KAEFER-CRM_SP')
+        Visible: |-
+            =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+        Width: =50
+        X: =22
+        Y: =95
+        ZIndex: =28
+
+    ComboBox1 As combobox:
+        DefaultSelectedItems: =["Asturias"]
+        DisplayFields: =["Profit_x0020_center"]
+        Height: =30
+        InputTextPlaceholder: ="UdN"
+        Items: =Sort(GroupBy('KAEFER-CRM_SP',"Profit_x0020_center","ID"),Profit_x0020_center,Ascending)
+        SearchFields: =["Profit_x0020_center"]
+        SearchItems: =Search(Sort(GroupBy('KAEFER-CRM_SP',"Profit_x0020_center","ID"),Profit_x0020_center,Ascending),ComboBox1.SearchText,"Profit_x0020_center")
+        Size: =10
+        Visible: |-
+            =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+        Width: =200
+        X: =930
+        Y: =86
+        ZIndex: =29
+
+    Toggle3 As toggleSwitch:
+        FalseText: ="Local - rapido"
+        Height: =25
+        Size: =10
+        Tooltip: ="Cambio a conexión directa con SAP - OJO!!! Es mas lento y solo se debe usar si creamos nuevo cliente el mismo día"
+        TrueText: ="SAP - directo"
+        Visible: |-
+            =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+        Width: =160
+        X: =700
+        Y: =52
+        ZIndex: =30
+
+    Group1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =31
+
+        Dropdown1 As dropdown:
+            Height: =30
+            Items: =[Year(Today()),Year(Today())-1,Year(Today())-2,Year(Today())-3,Year(Today())-4,Year(Today())-5,Year(Today())-6,Year(Today())-7,Year(Today())-8,Year(Today())-9,Year(Today())-10]
+            Size: =10
+            Visible: |-
+                =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+            Width: =100
+            X: =500
+            Y: =10
+            ZIndex: =8
+
+        Dropdown1_9 As dropdown:
+            Height: =30
+            Items: =Sort(GroupBy('KAEFER-CRM_SP',"Profit_x0020_center","ID"),Profit_x0020_center,Ascending)
+            Size: =10
+            Visible: |-
+                =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+            Width: =200
+            X: =10
+            Y: =10
+            ZIndex: =9
+
+        Dropdown1_10 As dropdown:
+            Height: =30
+            Items: =["","Adjudicada","Anulada","Consulta","Desestimada","Pendiente"]
+            Size: =10
+            Visible: |-
+                =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+            Width: =200
+            X: =250
+            Y: =10
+            ZIndex: =10
+
+        Button3 As button:
+            OnSelect: |-
+                =Refresh('KAEFER-CRM_SP');
+                ClearCollect(col_CRM,
+                ShowColumns(
+                If(And(Toggle1.Value= true ,Toggle1_1.Value= true ,Toggle1_2.Value= true ),
+                Filter('KAEFER-CRM_SP',Status=Dropdown1_10.SelectedText.Value,'Profit center'=Dropdown1_9.SelectedText.Value,
+                Mid('Created (Created0)',7,4)=Dropdown1.SelectedText.Value),
+                If(And(Toggle1.Value= true ,Toggle1_1.Value= true ,Toggle1_2.Value= false ),
+                Filter('KAEFER-CRM_SP',Status=Dropdown1_10.SelectedText.Value,'Profit center'=Dropdown1_9.SelectedText.Value),
+                If(And(Toggle1.Value= true ,Toggle1_1.Value= false ,Toggle1_2.Value= true ),
+                Filter('KAEFER-CRM_SP','Profit center'=Dropdown1_9.SelectedText.Value,
+                Mid('Created (Created0)',7,4)=Dropdown1.SelectedText.Value),
+                If(And(Toggle1.Value= false ,Toggle1_1.Value= true ,Toggle1_2.Value= true ),
+                Filter('KAEFER-CRM_SP',Status=Dropdown1_10.SelectedText.Value,
+                Mid('Created (Created0)',7,4)=Dropdown1.SelectedText.Value),
+                If(And(Toggle1.Value= true ,Toggle1_1.Value= false ,Toggle1_2.Value= false ),
+                Filter('KAEFER-CRM_SP','Profit center'=Dropdown1_9.SelectedText.Value),
+                If(And(Toggle1.Value= false ,Toggle1_1.Value= true ,Toggle1_2.Value= false ),
+                Filter('KAEFER-CRM_SP',Status=Dropdown1_10.SelectedText.Value),
+                If(And(Toggle1.Value= false ,Toggle1_1.Value= false ,Toggle1_2.Value= true ),
+                Filter('KAEFER-CRM_SP',Mid('Created (Created0)',7,4)=Dropdown1.SelectedText.Value),
+                If(And(Toggle1.Value= false ,Toggle1_1.Value= false ,Toggle1_2.Value= false ),
+                Filter('KAEFER-CRM_SP',Or(Status="Pendiente",Status="Consulta")))))))))),
+                "Status","Debitor","Offer_x0020_Number","Offer_x0020_text","Tipo_x0020_de_x0020_Cliente","Tipo_x0020_de_x0020_Industria_x0","Location","Object","Offer_x0020_Type","Value","DB1B_x0025_","Profit_x0020_center","Calculator","Owner","Tipo_x0020_de_x0020_precio","Start","End","Visit_x0020_date","Created0","EW_x0025_","Comments","Tipo_x0020_de_x0020_Contrato","Title","ClienteFInal","valid","Creation_x0020_date","Created","Modified"))
+            RadiusBottomLeft: =40
+            RadiusBottomRight: =40
+            RadiusTopLeft: =40
+            RadiusTopRight: =40
+            Text: ="Ver Ofertas"
+            Visible: |-
+                =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+            X: =700
+            Y: =10
+            ZIndex: =11
+
+        Toggle1 As toggleSwitch:
+            FalseText: ="UdN"
+            Height: =25
+            TrueText: ="UdN"
+            Visible: |-
+                =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+            Width: =100
+            X: =10
+            Y: =50
+            ZIndex: =12
+
+        Toggle1_1 As toggleSwitch:
+            FalseText: ="Status"
+            Height: =25
+            TrueText: ="Status"
+            Visible: |-
+                =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+            Width: =100
+            X: =250
+            Y: =50
+            ZIndex: =13
+
+        Toggle1_2 As toggleSwitch:
+            FalseText: ="Año"
+            Height: =25
+            TrueText: ="Año"
+            Visible: |-
+                =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+            Width: =100
+            X: =500
+            Y: =50
+            ZIndex: =14
+
+    Checkbox1_1 As checkbox:
+        Default: =true
+        Height: =40
+        Text: =""
+        Visible: |-
+            =If(Label13.Text = "Perfil CRM: Directivo",true,false)
+        Width: =40
+        X: =1130
+        Y: =79
+        ZIndex: =33
+
+    TextInput1_4 As text:
+        Default: =""
+        Height: =30
+        HintText: ="Calculista"
+        Size: =10
+        Width: =80
+        X: =500
+        Y: =119
+        ZIndex: =34
+
+    ComboBox1_5 As combobox:
+        DefaultSelectedItems: =If(Checkbox1_2.Value=true,Sort(GroupBy('KAEFER-CRM_SP',"Status","ID"),Status,Ascending),[])
+        DisplayFields: =["Status"]
+        Height: =30
+        InputTextPlaceholder: ="Status"
+        Items: =Sort(GroupBy('KAEFER-CRM_SP',"Status","ID"),Status,Ascending)
+        SearchFields: =["Status"]
+        SearchItems: =Search(Sort(GroupBy('KAEFER-CRM_SP',"Status","ID"),Status,Ascending),ComboBox1_5.SearchText,"Status")
+        Size: =10
+        Width: =170
+        X: =700
+        Y: =89
+        ZIndex: =35
+
+    Checkbox1_2 As checkbox:
+        Default: =true
+        Height: =40
+        Text: =""
+        Width: =40
+        X: =873
+        Y: =80
+        ZIndex: =36
+
+    TextInput1_7 As text:
+        Default: =""
+        Height: =30
+        HintText: ="Responsable"
+        PaddingLeft: =5
+        Size: =10
+        Width: =95
+        X: =580
+        Y: =119
+        ZIndex: =37
+

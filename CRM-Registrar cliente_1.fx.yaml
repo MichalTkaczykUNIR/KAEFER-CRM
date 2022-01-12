@@ -1,0 +1,683 @@
+"'Registrar cliente_1' As screen":
+    BackgroundImage: =bck5
+    Fill: =RGBA(215, 223, 240, 1)
+
+    "Gallery5 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =200
+        Items: =Filter('@KSI_CRM_CLIENTES',Code=Gallery7.Selected.Code)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =190
+        Width: =1200
+        X: =75
+        ZIndex: =1
+
+        Separator4 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
+        TextInput8 As text:
+            Default: =ThisItem.U_CRM_CardName
+            OnSelect: =Select(Parent)
+            Size: =10
+            X: =30
+            Y: =60
+            ZIndex: =6
+
+        TextInput8_1 As text:
+            Default: =ThisItem.U_CRM_LicTradNum
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =400
+            Y: =60
+            ZIndex: =7
+
+        TextInput8_2 As text:
+            Default: =ThisItem.U_CRM_CardFName
+            OnSelect: =Select(Parent)
+            Size: =10
+            X: =30
+            Y: =140
+            ZIndex: =8
+
+        TextInput8_3 As text:
+            Default: =ThisItem.U_CRM_IntrntSite
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =650
+            Y: =60
+            ZIndex: =9
+
+        TextInput8_4 As text:
+            Default: =ThisItem.U_CRM_Phone1
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =400
+            Y: =140
+            ZIndex: =10
+
+        TextInput8_5 As text:
+            Default: =ThisItem.U_CRM_Fax
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =650
+            Y: =140
+            ZIndex: =11
+
+        Label16_4 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Razón Social"
+            Underline: =true
+            Width: =320
+            X: =30
+            Y: =35
+            ZIndex: =12
+
+        Label16_29 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Nombre Comercial"
+            Underline: =true
+            Width: =320
+            X: =30
+            Y: =115
+            ZIndex: =13
+
+        Label16_30 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="CIF"
+            Underline: =true
+            Width: =200
+            X: =400
+            Y: =35
+            ZIndex: =14
+
+        Label16_35 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Teléfono"
+            Underline: =true
+            Width: =200
+            X: =400
+            Y: =115
+            ZIndex: =15
+
+        Label16_36 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Fax"
+            Underline: =true
+            Width: =200
+            X: =650
+            Y: =115
+            ZIndex: =16
+
+        Label16_37 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="E-mail"
+            Underline: =true
+            Width: =200
+            X: =900
+            Y: =35
+            ZIndex: =17
+
+        Label16_38 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Página web"
+            Underline: =true
+            Width: =200
+            X: =650
+            Y: =35
+            ZIndex: =18
+
+        TextInput8_6 As text:
+            Default: =ThisItem.U_CRM_e_mail
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =900
+            Y: =60
+            ZIndex: =19
+
+        Label16_47 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =30
+            Size: =20
+            Text: ="DATOS GENERALES"
+            Underline: =true
+            Width: =400
+            X: =400
+            ZIndex: =20
+
+        Icon7 As icon.Save:
+            Height: =50
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch('@KSI_CRM_CLIENTES',ThisItem,
+                {U_CRM_CardName:TextInput8.Text,
+                U_CRM_CardFName:TextInput8_2.Text,
+                U_CRM_LicTradNum:TextInput8_1.Text,
+                U_CRM_Phone1:TextInput8_4.Text,
+                U_CRM_Fax:TextInput8_5.Text,
+                U_CRM_e_mail:TextInput8_6.Text,
+                U_CRM_IntrntSite:TextInput8_3.Text,
+                U_CRM_Updatetime:Now(),
+                U_CRM_Creador:User().Email
+                })
+            Width: =50
+            X: =1150
+            Y: =134
+            ZIndex: =21
+
+        Label16_48 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: =ThisItem.U_CRM_Creador
+            Width: =200
+            X: =1000
+            Y: =18
+            ZIndex: =22
+
+        Label16_49 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: =ThisItem.U_CRM_Updatetime
+            Width: =200
+            X: =1000
+            ZIndex: =23
+
+        Label16_56 As label:
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =30
+            Size: =15
+            Text: |-
+                ="Código: "&ThisItem.Code
+            Underline: =true
+            Width: =320
+            ZIndex: =24
+
+        Icon7_1 As icon.Save:
+            Height: =30
+            Icon: =Icon.Trash
+            OnSelect: =Remove('@KSI_CRM_CLIENTES', ThisItem)
+            Width: =30
+            Y: =107
+            ZIndex: =25
+
+    "Gallery5_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =250
+        Items: =Filter('@KSI_CRM_CLI_DIRECCI',Code=Gallery7.Selected.Code)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =110
+        Width: =1200
+        X: =75
+        Y: =200
+        ZIndex: =2
+
+        Separator4_1 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
+        TextInput8_7 As text:
+            Default: =ThisItem.U_CRM_Street
+            OnSelect: =Select(Parent)
+            Size: =10
+            X: =30
+            Y: =65
+            ZIndex: =6
+
+        TextInput8_8 As text:
+            Default: =ThisItem.U_CRM_Number
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =400
+            Y: =65
+            ZIndex: =7
+
+        TextInput8_9 As text:
+            Default: =ThisItem.U_CRM_ZipCode
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =650
+            Y: =65
+            ZIndex: =8
+
+        Label16_31 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Calle"
+            Underline: =true
+            Width: =320
+            X: =30
+            Y: =40
+            ZIndex: =9
+
+        Label16_32 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Número"
+            Underline: =true
+            Width: =200
+            X: =400
+            Y: =40
+            ZIndex: =10
+
+        Label16_39 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Provincia"
+            Underline: =true
+            Width: =200
+            X: =900
+            Y: =40
+            ZIndex: =11
+
+        Label16_40 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Código Postal"
+            Underline: =true
+            Width: =200
+            X: =650
+            Y: =40
+            ZIndex: =12
+
+        TextInput8_10 As text:
+            Default: =ThisItem.U_CRM_County
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =900
+            Y: =65
+            ZIndex: =13
+
+        Label16_33 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =30
+            Size: =20
+            Text: =If(ThisItem.U_CRM_Address_Type="1","Domicilio Fiscal","Domicilio de envío de facturas")
+            Underline: =true
+            Width: =400
+            X: =400
+            Y: =5
+            ZIndex: =14
+
+        Icon8 As icon.Save:
+            Height: =50
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch('@KSI_CRM_CLI_DIRECCI',ThisItem,
+                {U_CRM_Street:TextInput8_7.Text,
+                U_CRM_Number:TextInput8_8.Text,
+                U_CRM_ZipCode:TextInput8_9.Text,
+                U_CRM_County:TextInput8_10.Text,
+                U_CRM_Updatetime:Now(),
+                U_CRM_Creator:User().Email
+                })
+            Width: =50
+            X: =1150
+            Y: =54
+            ZIndex: =15
+
+        Label16_50 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: =ThisItem.U_CRM_Creator
+            Width: =200
+            X: =1000
+            Y: =18
+            ZIndex: =16
+
+        Label16_51 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: =ThisItem.U_CRM_Updatetime
+            Width: =200
+            X: =1000
+            ZIndex: =17
+
+        Icon7_2 As icon.Save:
+            Height: =30
+            Icon: =Icon.Trash
+            OnSelect: =Remove('@KSI_CRM_CLI_DIRECCI', ThisItem)
+            Width: =30
+            Y: =38
+            ZIndex: =18
+
+    "Gallery5_2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =200
+        Items: =Filter('@KSI_CRM_CLI_CONTACT',Code=Gallery7.Selected.Code)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =110
+        Width: =1200
+        X: =75
+        Y: =450
+        ZIndex: =3
+
+        Separator4_2 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
+        TextInput8_12 As text:
+            Default: =ThisItem.U_CRM_Name
+            OnSelect: =Select(Parent)
+            Size: =10
+            X: =30
+            Y: =65
+            ZIndex: =6
+
+        TextInput8_13 As text:
+            Default: =ThisItem.U_CRM_Position
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =400
+            Y: =65
+            ZIndex: =7
+
+        TextInput8_14 As text:
+            Default: =ThisItem.U_CRM_Tel1
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =650
+            Y: =65
+            ZIndex: =8
+
+        Label16_42 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Nombre"
+            Underline: =true
+            Width: =320
+            X: =30
+            Y: =40
+            ZIndex: =9
+
+        Label16_43 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Cargo"
+            Underline: =true
+            Width: =200
+            X: =400
+            Y: =40
+            ZIndex: =10
+
+        Label16_44 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="E-mail"
+            Underline: =true
+            Width: =200
+            X: =900
+            Y: =40
+            ZIndex: =11
+
+        Label16_45 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Teléfono"
+            Underline: =true
+            Width: =200
+            X: =650
+            Y: =40
+            ZIndex: =12
+
+        TextInput8_15 As text:
+            Default: =ThisItem.U_CRM_E_mail
+            OnSelect: =Select(Parent)
+            Size: =10
+            Width: =200
+            X: =900
+            Y: =65
+            ZIndex: =13
+
+        Label16_46 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =30
+            Size: =20
+            Text: ="Contactos"
+            Underline: =true
+            Width: =400
+            X: =400
+            Y: =5
+            ZIndex: =14
+
+        Icon9 As icon.Save:
+            Height: =50
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch('@KSI_CRM_CLI_CONTACT',ThisItem,
+                {U_CRM_Name:TextInput8_12.Text,
+                U_CRM_Position:TextInput8_13.Text,
+                U_CRM_Tel1:TextInput8_14.Text,
+                U_CRM_E_mail:TextInput8_15.Text,
+                U_CRM_Updatetime:Now(),
+                U_CRM_Creaddor:User().Email
+                })
+            Width: =50
+            X: =1150
+            Y: =54
+            ZIndex: =15
+
+        Label16_52 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: =ThisItem.U_CRM_Creaddor
+            Width: =200
+            X: =1000
+            Y: =18
+            ZIndex: =16
+
+        Label16_53 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: =ThisItem.U_CRM_Updatetime
+            Width: =200
+            X: =1000
+            ZIndex: =17
+
+        Icon7_3 As icon.Save:
+            Height: =30
+            Icon: =Icon.Trash
+            OnSelect: =Remove('@KSI_CRM_CLI_CONTACT', ThisItem)
+            Width: =30
+            Y: =35
+            ZIndex: =18
+
+    "Gallery5_3 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =115
+        Items: =Filter('@KSI_CRM_CLI_DIASPAG',Code=Gallery7.Selected.Code)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =110
+        Width: =1200
+        X: =75
+        Y: =650
+        ZIndex: =4
+
+        Separator4_3 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
+        TextInput8_11 As text:
+            Default: =ThisItem.U_CRM_Dia
+            OnSelect: =Select(Parent)
+            Size: =10
+            X: =30
+            Y: =65
+            ZIndex: =6
+
+        Label16_34 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: ="Días de pago"
+            Underline: =true
+            Width: =320
+            X: =30
+            Y: =40
+            ZIndex: =7
+
+        Label16_41 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =30
+            Size: =20
+            Text: ="Condiciones Comerciales"
+            Underline: =true
+            Width: =400
+            X: =400
+            Y: =5
+            ZIndex: =8
+
+        Icon10 As icon.Save:
+            Height: =50
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch('@KSI_CRM_CLI_DIASPAG',ThisItem,
+                {U_CRM_Dia:Value(TextInput8_11.Text),
+                U_CRM_Updatetime:Now(),
+                U_CRM_Creador:User().Email
+                })
+            Width: =50
+            X: =1150
+            Y: =54
+            ZIndex: =9
+
+        Label16_54 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: =ThisItem.U_CRM_Creador
+            Width: =200
+            X: =1000
+            Y: =18
+            ZIndex: =10
+
+        Label16_55 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =10
+            Text: =ThisItem.U_CRM_Updatetime
+            Width: =200
+            X: =1000
+            ZIndex: =11
+
+        Icon7_4 As icon.Save:
+            Height: =30
+            Icon: =Icon.Trash
+            OnSelect: =Remove('@KSI_CRM_CLI_DIASPAG', ThisItem)
+            Width: =30
+            Y: =40
+            ZIndex: =12
+
+    Icon2_4 As icon.Cancel:
+        Height: =50
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Navigate('Lista clientes',Fade)
+        Width: =50
+        ZIndex: =5
+
